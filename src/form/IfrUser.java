@@ -158,7 +158,7 @@ public class IfrUser extends javax.swing.JInternalFrame {
         if(framesize.width > screensize.width){
             framesize.width = screensize.width;
         }
-        this.setLocation(screensize.width - framesize.width/2, 
+        this.setLocation((screensize.width - framesize.width)/2, 
                 (screensize.height - framesize.height)/2);
     }
     @SuppressWarnings("unchecked")
@@ -202,7 +202,7 @@ public class IfrUser extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Input Data"));
         jPanel1.setOpaque(false);
 
-        cmbLevUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Pilih---", "Administrator", "User" }));
+        cmbLevUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Pilih---", "Administrator", "Staf Akademik", "Staf Kemahasiswaan", "Staf Kepegawaian", "Staf Bag.Pembayaran UKT" }));
         cmbLevUser.setToolTipText("");
         cmbLevUser.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Level User"));
         cmbLevUser.setOpaque(false);

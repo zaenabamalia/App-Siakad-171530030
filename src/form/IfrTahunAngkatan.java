@@ -17,7 +17,7 @@ public class IfrTahunAngkatan extends javax.swing.JInternalFrame {
     Connection _Cnn;
     String sqlselect, sqlinsert, sqldelete;
     private DefaultTableModel tbangkatan;
-    String vkd_ta, vtahun_angkatan;
+    String vid_ta, vtahun_angkatan;
     
     public IfrTahunAngkatan() {
         initComponents();
@@ -81,13 +81,13 @@ public class IfrTahunAngkatan extends javax.swing.JInternalFrame {
             _Cnn = null;
             _Cnn = getCnn.getConnection();
             clearTabel();
-            sqlselect = "select * from tbangkatan order by kd_ta asc";
+            sqlselect = "select * from tbthangkatan order by id_ta asc";
             Statement stat = _Cnn.createStatement();
             ResultSet res = stat.executeQuery(sqlselect);
             while(res.next()){
-                vkd_ta = res.getString(1);
+                vid_ta = res.getString(1);
                 vtahun_angkatan = res.getString(2);
-                Object[]data = {vkd_ta, vtahun_angkatan};
+                Object[]data = {vid_ta, vtahun_angkatan};
                 tbangkatan.addRow(data);
             }
             lbRecord.setText("Record : "+tbDataThAngkatan.getRowCount());
@@ -99,11 +99,11 @@ public class IfrTahunAngkatan extends javax.swing.JInternalFrame {
     private void aksiSimpan(){
         vtahun_angkatan = txtThAngkatan.getText();
         if(btnSimpan.getText().equals("Simpan")){
-            sqlinsert = "insert into tbangkatan values " 
-                    + "('"+vkd_ta+"', '"+vtahun_angkatan+"') ";
+            sqlinsert = "insert into tbthangkatan values " 
+                    + "('"+vid_ta+"', '"+vtahun_angkatan+"') ";
         }else{
             sqlinsert = "update tbangkatan set tahun_Angkatan='"+vtahun_angkatan+"'" 
-                    + " where kd_ta='"+vkd_ta+"' ";
+                    + " where id_ta='"+vid_ta+"' ";
         }
         try{
             _Cnn = null;
@@ -119,13 +119,13 @@ public class IfrTahunAngkatan extends javax.swing.JInternalFrame {
     
     private void aksiHapus(){
         int jawab = JOptionPane.showConfirmDialog(this, 
-                "Apakah anda yakin akan menghapus data ini ? ID. TA : "+vkd_ta, 
+                "Apakah anda yakin akan menghapus data ini ? ID. TA : "+vid_ta, 
                 "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if(jawab==JOptionPane.YES_OPTION){
             try{
                 _Cnn = null;
                 _Cnn = getCnn.getConnection();
-                sqldelete = "delete from tbangkatan where kd_ta='"+vkd_ta+"'";
+                sqldelete = "delete from tbthangkatan where id_ta='"+vid_ta+"'";
                 Statement state = _Cnn.createStatement();
                 state.executeUpdate(sqldelete);
                 JOptionPane.showMessageDialog(this, "Data berhasil dihapus");
@@ -146,7 +146,7 @@ public class IfrTahunAngkatan extends javax.swing.JInternalFrame {
         if(framesize.width > screensize.width){
             framesize.width = screensize.width;
         }
-        this.setLocation(screensize.width - framesize.width/2, 
+        this.setLocation((screensize.width - framesize.width)/2, 
                 (screensize.height - framesize.height)/2);
     }
     
@@ -155,13 +155,13 @@ public class IfrTahunAngkatan extends javax.swing.JInternalFrame {
         try{
             _Cnn = null;
             _Cnn = getCnn.getConnection();
-            sqlselect = "select max(kd_ta) from tbangkatan";
+            sqlselect = "select max(id_ta) from tbthangkatan";
             Statement stat = _Cnn.createStatement();
             ResultSet res = stat.executeQuery(sqlselect);
             if(res.first()){
                 Integer no = res.getInt(1)+1;
-                vkd_ta = no.toString();
-                txtIdTA.setText(vkd_ta);
+                vid_ta = no.toString();
+                txtIdTA.setText(vid_ta);
             }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this, "Error method createAutoID():" 
@@ -401,54 +401,16 @@ public class IfrTahunAngkatan extends javax.swing.JInternalFrame {
     private void tbDataThAngkatanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDataThAngkatanMouseClicked
         if(evt.getClickCount()==2){
             int brs = tbDataThAngkatan.getSelectedRow();
-            vkd_ta = tbDataThAngkatan.getValueAt(brs, 0).toString();
+            vid_ta = tbDataThAngkatan.getValueAt(brs, 0).toString();
             vtahun_angkatan = tbDataThAngkatan.getValueAt(brs, 1).toString();
-            txtIdTA.setText(vkd_ta); txtThAngkatan.setText(vtahun_angkatan);
+            txtIdTA.setText(vid_ta); txtThAngkatan.setText(vtahun_angkatan);
             enableForm();
             btnHapus.setEnabled(true);
             btnSimpan.setText("Ubah");
         }
     }//GEN-LAST:event_tbDataThAngkatanMouseClicked
 
-    public static void main(String args[]) throws UnsupportedLookAndFeelException,
-            IOException, ClassNotFoundException, InstantiationException, IllegalAccessException{
-        try{
-            com.jtattoo.plaf.mcwin.McWinLookAndFeel.setTheme("Default", "java Swing", "");
-            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
-            SwingUtilities.updateComponentTreeUI(new FrMenu());
-    } finally {
-        new FrMenu().setVisible(true);
-    }
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrMenu().setVisible(true);
-            }
-        });
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSimpan;
@@ -466,4 +428,10 @@ public class IfrTahunAngkatan extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtIdTA;
     private javax.swing.JTextField txtThAngkatan;
     // End of variables declaration//GEN-END:variables
+
+    private static class NewJFrame {
+
+        public NewJFrame() {
+        }
+    }
 }
