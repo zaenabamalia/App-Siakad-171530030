@@ -177,7 +177,7 @@ public class IfrProdi extends javax.swing.JInternalFrame {
         try{
             _Cnn = null;
             _Cnn = getCnn.getConnection();
-            String sql = "select * from tbjurusan order by jurusan asc";
+            String sql = "select * from tbjurusan order by jurusan desc";
             Statement stat = _Cnn.createStatement();
             ResultSet res=stat.executeQuery(sql);
             cmbJurusan.removeAllItems();

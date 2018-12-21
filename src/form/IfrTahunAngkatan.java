@@ -102,7 +102,7 @@ public class IfrTahunAngkatan extends javax.swing.JInternalFrame {
             sqlinsert = "insert into tbthangkatan values " 
                     + "('"+vid_ta+"', '"+vtahun_angkatan+"') ";
         }else{
-            sqlinsert = "update tbangkatan set tahun_Angkatan='"+vtahun_angkatan+"'" 
+            sqlinsert = "update tbthangkatan set tahun_angkatan='"+vtahun_angkatan+"'" 
                     + " where id_ta='"+vid_ta+"' ";
         }
         try{
@@ -111,7 +111,7 @@ public class IfrTahunAngkatan extends javax.swing.JInternalFrame {
             Statement state = _Cnn.createStatement();
             state.executeUpdate(sqlinsert);
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-            clearForm(); disableForm(); showTabel();
+            aksiTambah ();clearForm(); disableForm(); showTabel();
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(this, "Error method aksiSimpan() : "+ex);
         }
@@ -129,12 +129,29 @@ public class IfrTahunAngkatan extends javax.swing.JInternalFrame {
                 Statement state = _Cnn.createStatement();
                 state.executeUpdate(sqldelete);
                 JOptionPane.showMessageDialog(this, "Data berhasil dihapus");
-                clearForm(); disableForm(); showTabel();
+                aksiTambah(); clearForm(); disableForm(); showTabel();
             }catch(SQLException ex){
                 JOptionPane.showMessageDialog(this, "Error method aksiHapus() : ex");
             }
         }
         
+    }
+    
+    private void aksiTambah(){
+        if(btnTambah.getText().equals("Tambah")){
+            btnTambah.setText("Batal");
+            enableForm();
+            txtThAngkatan.setEnabled(true);
+            btnTambah.setIcon(new javax.swing.ImageIcon(getClass().
+                    getResource("/Image/btn_delete.png")));
+        }else if(btnTambah.getText().equals("Batal")){
+            btnTambah.setText("Tambah");
+            clearForm();
+            disableForm();
+            txtThAngkatan.setEnabled(false);
+            btnTambah.setIcon(new javax.swing.ImageIcon(getClass().
+                    getResource("/Image/trans-add.png")));
+        }
     }
     
     private void formTengah(){
@@ -375,9 +392,7 @@ public class IfrTahunAngkatan extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtIdTAActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        enableForm();
-        createAutoID();
-        txtThAngkatan.requestFocus(true);
+        aksiTambah();
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed

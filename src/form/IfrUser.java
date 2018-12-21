@@ -51,7 +51,7 @@ public class IfrUser extends javax.swing.JInternalFrame {
     }
     
     private void setTabel(){
-        String[] kolom1 = {"ID. User", "Nama User", "Password", "Level User"};
+        String[] kolom1 = {"ID. User", "Nama User", "Password", "Level User" };
         tbuser = new DefaultTableModel(null, kolom1){
             Class[] types = new Class[]{
                 java.lang.String.class,

@@ -317,7 +317,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{tgl_lahir}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nama_ayah}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="691" y="0" width="84" height="60" uuid="828d9e38-b5f8-4cac-b844-aa21de2fb5fc"/>

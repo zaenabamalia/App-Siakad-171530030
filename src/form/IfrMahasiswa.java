@@ -36,7 +36,7 @@ public class IfrMahasiswa extends javax.swing.JInternalFrame {
     Connection _Cnn;
     
     String sqlselect, sqlinsert, sqldelete;
-    String vnim, vid_ta, vkd_prodi, vnama_mhs, vjk, vtmp_Lahir, vtgl_lahir,
+    String vnim, vid_ta, vkd_prodi, vnama_mhs, vjk, vtgl_lahir, vtmp_Lahir,
             vagama, vnama_ayah, vnama_ibu, valamat, vno_telepon, vfoto;
     File imageFile = null;
     
@@ -64,7 +64,7 @@ public class IfrMahasiswa extends javax.swing.JInternalFrame {
         cmbJnsKel.setSelectedIndex(0);
         cmbAgama.setSelectedIndex(0);
         txtNamaMhs.setText("");
-        txtTmpLahir.setText("");
+        
         dtTglLahir.setDate(new Date());
         txtNamaAyah.setText("");
         txtNamaIbu.setText("");
@@ -78,7 +78,7 @@ public class IfrMahasiswa extends javax.swing.JInternalFrame {
     }
     
     private void setTabelMahasiswa(){
-        String[] kolom1 = {"NIM", "Nama Mahasiswa", "L/P", "Tempat", "Tgl. Lahir", 
+        String[] kolom1 = {"NIM", "Nama Mahasiswa", "L/P", "Tempat Lahir", "Tgl. Lahir", 
             "Program Studi", "Alamat", "No. Telepon"};
         tblmahasiswa = new DefaultTableModel(null, kolom1){
             Class[] types = new Class[]{
@@ -137,7 +137,7 @@ public class IfrMahasiswa extends javax.swing.JInternalFrame {
                 vkd_prodi = res.getString("prodi");
                 valamat = res.getString("alamat");
                 vno_telepon = res.getString("no_telepon");
-                Object[]data = {vnim, vnama_mhs, vjk, vtmp_Lahir, 
+                Object[]data = {vnim, vnama_mhs, vjk, vtmp_Lahir,
                     vtgl_lahir, vkd_prodi, valamat, vno_telepon};
                 tblmahasiswa.addRow(data);
             }

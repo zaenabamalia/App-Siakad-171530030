@@ -10,7 +10,7 @@ public class jdUbahPassword extends javax.swing.JDialog {
     KoneksiDB getCnn = new KoneksiDB();
     Connection _Cnn;
     String vid_user, vpasslama, vpassbaru;
-    String sqlcelect, sqlinsert;
+    String sqlselect, sqlinsert;
     
     public jdUbahPassword(java.awt.Frame parent, boolean modal, String iduser) {
         super(parent, modal);
@@ -21,23 +21,24 @@ public class jdUbahPassword extends javax.swing.JDialog {
         txtIDUser.setText(vid_user);
         txtIDUser.setEditable(false);
         txtPassLama.requestFocus(true);
+        setLocationRelativeTo(this);
     }
     
     
-        private void updatePassword(String sqlselect){
+    private void updatePassword(){
         vpasslama = txtPassLama.getText().replaceAll("'", "");
         vpassbaru = txtPassBaru.getText().replaceAll("'", "");
         try{
             _Cnn = null;
             _Cnn = getCnn.getConnection();
             sqlselect = "select * from tbuser "
-                + " where id_user='"+vid_user+"' and pass="+vpasslama+"' ";
+                + " where id_user='"+vid_user+"' and pass='"+vpasslama+"' ";
             Statement stat = _Cnn.createStatement();
             ResultSet res = stat.executeQuery(sqlselect);
             if(res.first()){
                 
                 sqlinsert = "update tbuser set pass='"+vpassbaru+"' " 
-                        + " where id_user'"+vid_user+"' ";
+                        + " where id_user='"+vid_user+"' ";
                 Statement stat1 = _Cnn.createStatement();
                 stat1.executeUpdate(sqlinsert);
                 JOptionPane.showMessageDialog(null, "Password berhasil diubah", 
@@ -55,9 +56,7 @@ public class jdUbahPassword extends javax.swing.JDialog {
         }          
     }
 
-    jdUbahPassword(FrMenu aThis, boolean b, String vid_user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 
 
@@ -230,7 +229,5 @@ public class jdUbahPassword extends javax.swing.JDialog {
     private javax.swing.JPasswordField txtPassLama;
     // End of variables declaration//GEN-END:variables
 
-    private void updatePassword() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpMahasiswa1" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="786" leftMargin="28" rightMargin="28" topMargin="42" bottomMargin="28" uuid="f7d030cc-5c73-4085-88c2-4eb9d2d9b8ff">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="31"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="parLogo" class="java.lang.String"/>
 	<queryString>
@@ -167,7 +167,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
-				<text><![CDATA[Nama Ayah]]></text>
+				<text><![CDATA[Nama Ibu]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="533" y="0" width="153" height="25" backcolor="#CCFFFF" uuid="808397bc-6670-4cd5-ad92-0455919f32e5"/>
@@ -285,7 +285,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{nama_ayah}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nama_ibu}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="533" y="0" width="153" height="45" uuid="02eb3d9f-88fa-48a2-9319-817d53b5d889"/>
